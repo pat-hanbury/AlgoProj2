@@ -1,0 +1,8 @@
+//
+// Created by Patrick on 1/26/2018.
+//
+
+#ifndef PROJECT2DECKOFCARDS_CARD_H
+#define PROJECT2DECKOFCARDS_CARD_H
+
+#endif //PROJECT2DECKOFCARDS_CARD_H
