@@ -22,10 +22,6 @@ public:
     //current node as you navigate through linked list
     card *current;
 
-    /* John's Next Function
-    card *next(card *current);
-    */
-
     //Free function that grants access to print the deck
     friend std::ostream& operator <<(std::ostream&, deck &d);
 };

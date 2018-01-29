@@ -44,14 +44,6 @@ deck::deck(){
     }
 }
 
-/* John's Next Function
-
-card *deck::Next(card *current){
-    //Points to the next card node
-        //Returns as next
-    return current -> next;
-*/
-
 //Free function that grants access to print the deck
 std::ostream& operator <<(std::ostream&, deck &d){
     //set the current card to the head
