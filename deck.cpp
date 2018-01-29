@@ -22,7 +22,14 @@ deck::deck(){
 
         //for loop to iterate between between the card values
         for (int k=0; k<13; k++){
+            //check if there is enough heap memory for a new card
+            if (new card(suits[i], number[k]) == NULL)
+            {
+                throw "Not enough heap space to create a new card.";
+            }
+
             //create a new card
+
             card *newCard = new card(suits[i], number[k]);
 
             //check if new card is the first card
@@ -44,16 +51,12 @@ deck::deck(){
     }
 }
 
-/* John's Next Function
-
-card *deck::Next(card *current){
-    //Points to the next card node
-        //Returns as next
-    return current -> next;
-*/
-
 //Free function that grants access to print the deck
 std::ostream& operator <<(std::ostream&, deck &d){
+    if (d.head == NULL){
+        throw "deck is empty";
+    }
+
     //set the current card to the head
     d.current = d.head;
 
