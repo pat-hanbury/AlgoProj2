@@ -40,4 +40,5 @@ card::card(std::string &suit, std::string &point){
 
     //set the next pointer of the card to NULL
     next = NULL;
+    previous = NULL;
 }

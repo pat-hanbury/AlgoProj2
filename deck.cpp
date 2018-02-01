@@ -44,9 +44,18 @@ deck::deck(){
                 current->next = newCard;
             }
 
+            //placeholder for card before new card
+            card *previousCard = new card;
+            previousCard = current;
+
             //set head to new card for next loop
             current = newCard;
 
+            //assign a previous value to new card
+            current->previous = previousCard;
+
+            //delete dynamically allocated memory
+            delete previousCard;
         }
     }
 }
@@ -99,6 +108,84 @@ std::ostream& operator <<(std::ostream&, deck &d){
         //change to next card node
         d.current = d.current->next;
         cardCount++;
+    }
+
+}
+
+void deck::shuffle() {
+    /*reorders the nodes of the linked list */
+
+    //set up randomization capabilities
+    srand(time(NULL));
+
+    //number of times to swap cards in deck
+    int numberOfSwaps = 100;
+
+    //do the swaps
+    for(int j=0; j < numberOfSwaps; j++) {
+        //initialize random numbers
+        int randNumber1 = rand() % 52;
+        int randNumber2 = rand() % 52;
+
+        //insure random numbers are not the same
+        while (randNumber1 == randNumber2) {
+            int randNumber2 = rand() % 52;
+        }
+
+        //start at head of node
+        current = head;
+
+        //find node1
+        for (int i = 0; i < randNumber1; i++) {
+            current = current->next;
+        }
+
+        //set address stored in node1 to address found by current
+        card *node1 = new card; //dynamically allocate memory
+        node1 = current;
+
+        //start at head of node
+        current = head;
+
+        //find node2
+        for (int i = 0; i < randNumber2; i++) {
+            current = current->next;
+        }
+
+        card *node2 = new card;
+        node2 = current;
+
+        //dynamically allocate memory first for the swapping of ndoes
+        card *node1Next = new card;
+        card *node1Previous = new card;
+        card *node2Next = new card;
+        card *node2Previous = new card;
+
+        node1Next = node1->next;
+        node2Next = node2->next;
+        node1Previous = node1->previous;
+        node2Previous = node2->previous;
+
+        //swap node1 with node2
+
+        //reassign the nodes
+        node1->previous = node2Previous;
+        node1->next = node2Next;
+        node2->next = node1Previous;
+        node2->next = node1Next;
+
+        //reassign the nodes surrounding the swapped nodes
+        node1Previous->next = node2; //set the next of the original node1's previous to node2
+        node1Next->previous = node2; //set the previous of the original node1's next to node2
+
+
+        //delete dynamically allocated memory
+        delete node1;
+        delete node2;
+        delete node1Next;
+        delete node2Next;
+        delete node1Previous;
+        delete node2Previous;
     }
 
 }
