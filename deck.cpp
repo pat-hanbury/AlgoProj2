@@ -54,7 +54,7 @@ deck::deck(){
 
 
 //New deal function that returns top card in the deck by value. 
-card::deck(){
+card deck:deal(){
 	//Assigns the head node to the top card
 	card top = head->nodeValue; 
 	//Assigns the head node to the head of the next node
@@ -68,18 +68,18 @@ card::deck(){
 void deck::replace(const card& bottom){
 
 	//New dynamically allocated node, with the variable bottom that is passed. 
-	node<card> *bottomCard = new node<card> (bottom);
+	card *bottomCard = new node<card> (bottom);
 	//Statically allocated node that starts at head, and moves down the list
-	node<card> *prev.bottomCard = head;
+	card *previousbottomCard = head;
 	
 	//If bottomCard is not pointing to NULL, then the loop will iterate
-	while (prev.bottomCard->next){
+	while (previousbottomCard->next){
 		
 		//Moves the next card until it reaches the end of the deck 
-		prev.bottomCard = prev.bottomCard->next;
+		previousbottomCard = previousbottomCard->next;
 	}
 	//Moves the pointer from NULL to the last card to the bottom of the deck, back to bottomCard
-	prev.bottomCard->next = bottomCard;		
+	previousbottomCard->next = bottomCard;		
 }
 
 
