@@ -24,6 +24,12 @@ public:
 
     //Free function that grants access to print the deck
     friend std::ostream& operator <<(std::ostream&, deck &d);
+    
+    //Replace function
+    void replace(const card& bottom);
+    
+    //Returns the top card 
+    card deal();
 };
 
 #endif // DECK_H
