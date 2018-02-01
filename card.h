@@ -19,6 +19,7 @@ public:
 
     //next pointer
     card * next;
+    card * previous;
 
     //Suit function that passes a string by reference
         //Sets the private variable suit

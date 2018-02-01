@@ -8,6 +8,7 @@
 
 #include "card.h"
 #include <cstdlib>
+#include <time.h>
 
 //creating a class called deck
 class deck{
@@ -22,6 +23,7 @@ public:
     //current node as you navigate through linked list
     card *current;
 
+    void shuffle();
     //Free function that grants access to print the deck
     friend std::ostream& operator <<(std::ostream&, deck &d);
 };
