@@ -17,6 +17,9 @@ deck::deck(){
     //Initializes the arrays of numbers/values for the suits
     std::string number[13] = { "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace" };
 
+    //placement card holder for assigning the previous card value in a new card
+    card *previousCard;
+
     //For loop to iterate between the suits
     for (int i=0 ; i<4; i++){
 
@@ -45,7 +48,7 @@ deck::deck(){
             }
 
             //placeholder for card before new card
-            card *previousCard = new card;
+
             previousCard = current;
 
             //set head to new card for next loop
@@ -53,17 +56,14 @@ deck::deck(){
 
             //assign a previous value to new card
             current->previous = previousCard;
-
-            //delete dynamically allocated memory
-            delete previousCard;
         }
     }
 }
 
-
+/* JOHNS STUFF:FOO
 
 //New deal function that returns top card in the deck by value. 
-card::deck(){
+card deck::deal(){
 	//Assigns the head node to the top card
 	card top = head->nodeValue; 
 	//Assigns the head node to the head of the next node
@@ -90,7 +90,7 @@ void deck::replace(const card& bottom){
 	//Moves the pointer from NULL to the last card to the bottom of the deck, back to bottomCard
 	prev.bottomCard->next = bottomCard;		
 }
-
+*/
 
 //Free function that grants access to print the deck
 std::ostream& operator <<(std::ostream&, deck &d){
@@ -108,12 +108,16 @@ std::ostream& operator <<(std::ostream&, deck &d){
         //change to next card node
         d.current = d.current->next;
         cardCount++;
+
     }
 
 }
 
+
 void deck::shuffle() {
-    /*reorders the nodes of the linked list */
+    /*reorders the nodes of the linked list*/
+
+    std::cout<<"made it to shuffle function" << std::endl;
 
     //set up randomization capabilities
     srand(time(NULL));
@@ -121,15 +125,30 @@ void deck::shuffle() {
     //number of times to swap cards in deck
     int numberOfSwaps = 100;
 
+    //initialize placeholder variables
+    card *node1;
+    card *node2;
+    card *node1Next;
+    card *node1Previous;
+    card *node2Next;
+    card *node2Previous;
+
+    int randNumber1;
+    int randNumber2;
+
     //do the swaps
     for(int j=0; j < numberOfSwaps; j++) {
         //initialize random numbers
-        int randNumber1 = rand() % 52;
-        int randNumber2 = rand() % 52;
+
+        std::cout << "made it to the for loop of shuffle " << j << std::endl;
+
+        randNumber1 = rand() % 52;
+        randNumber2 = rand() % 52;
 
         //insure random numbers are not the same
         while (randNumber1 == randNumber2) {
-            int randNumber2 = rand() % 52;
+            randNumber2 = rand() % 52;
+            std::cout<<"while loop 1"<<std::endl;
         }
 
         //start at head of node
@@ -141,7 +160,7 @@ void deck::shuffle() {
         }
 
         //set address stored in node1 to address found by current
-        card *node1 = new card; //dynamically allocate memory
+         //dynamically allocate memory
         node1 = current;
 
         //start at head of node
@@ -152,14 +171,8 @@ void deck::shuffle() {
             current = current->next;
         }
 
-        card *node2 = new card;
-        node2 = current;
 
-        //dynamically allocate memory first for the swapping of ndoes
-        card *node1Next = new card;
-        card *node1Previous = new card;
-        card *node2Next = new card;
-        card *node2Previous = new card;
+        node2 = current;
 
         node1Next = node1->next;
         node2Next = node2->next;
@@ -177,15 +190,8 @@ void deck::shuffle() {
         //reassign the nodes surrounding the swapped nodes
         node1Previous->next = node2; //set the next of the original node1's previous to node2
         node1Next->previous = node2; //set the previous of the original node1's next to node2
-
-
-        //delete dynamically allocated memory
-        delete node1;
-        delete node2;
-        delete node1Next;
-        delete node2Next;
-        delete node1Previous;
-        delete node2Previous;
+        node2Previous->next = node1;
+        node2Next->previous = node1;
     }
 
 }

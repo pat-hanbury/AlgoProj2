@@ -42,3 +42,9 @@ card::card(std::string &suit, std::string &point){
     next = NULL;
     previous = NULL;
 }
+
+card::card(){
+    //set default next and previous parameters
+    next = NULL;
+    previous = NULL;
+}
