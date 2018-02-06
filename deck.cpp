@@ -11,7 +11,8 @@ deck::deck(){
     //Initializes the variable to null
     head = NULL;
 
-    //Initializes the arrays of suits
+    //Initializes the a1
+    // Arrays of suits
     std::string suits[4] = { "Hearts", "Diamonds", "Clubs", "Spades" };
 
     //Initializes the arrays of numbers/values for the suits
@@ -64,6 +65,10 @@ deck::deck(){
 //New deal function that returns top card in the deck by value. 
 card deck::deal(){
 	//Assigns the head node to the top card
+    if(head==NULL){
+        throw "Deck is empty. Can not deal a card.";
+    }
+
 	card top = head->value;
 	//Assigns the head node to the head of the next node
 	head = head->next;
