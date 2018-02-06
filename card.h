@@ -16,10 +16,7 @@ class card{
 public:
     //default constructor
     card();
-
-    //next pointer
-    card * next;
-    card * previous;
+    card(const card &copiedCard);
 
     //Suit function that passes a string by reference
         //Sets the private variable suit
@@ -38,10 +35,6 @@ public:
     //Constructor that passes the two strings by references
         //Sets the private variables
     card(std::string&, std::string&);
-
-    //Free function that grants access to the private variables suit and point
-        //Uses operator overloading to access the node card using c
-    friend std::ostream& operator << (std::ostream& ostr, card &c);
 
 
 //private members of class card.

@@ -32,19 +32,20 @@ std::string card::getPoint(){
 }
 
 //Constructor with two parameters, suit and point, and passes them by reference.
-card::card(std::string &suit, std::string &point){
+card::card(std::string &suit, std::string &point) {
     //First function calls the function Suit with suit as the string variable
     Suit(suit);
     //Second function calls the function Point with point as the string variable.
     Point(point);
-
-    //set the next pointer of the card to NULL
-    next = NULL;
-    previous = NULL;
 }
 
 card::card(){
-    //set default next and previous parameters
-    next = NULL;
-    previous = NULL;
+    suit = "NULL";
+    point = "NULL";
+}
+
+//copy constructor
+card::card(const card &copiedCard){
+    suit = copiedCard.suit;
+    point = copiedCard.point;
 }

@@ -6,7 +6,7 @@
 #ifndef DECK_H
 #define DECK_H
 
-#include "card.h"
+#include "node.h"
 #include <cstdlib>
 #include <time.h>
 
@@ -18,17 +18,17 @@ public:
     deck();
 
     //head node - start of linked list
-    card *head;
+    node *head;
 
     //current node as you navigate through linked list
-    card *current;
+    node *current;
 
     void shuffle();
     //Free function that grants access to print the deck
     friend std::ostream& operator <<(std::ostream&, deck &d);
     
     //Replace function
-    void replace(const card& bottom);
+    void replace(card& bottom);
     
     //Returns the top card 
     card deal();
